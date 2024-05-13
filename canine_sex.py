@@ -39,8 +39,9 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc
 from sklearn.model_selection import StratifiedKFold
+from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import train_test_split
 
-#import os
 
 """# **Dataset**"""
 
@@ -96,9 +97,9 @@ y = le.fit_transform(y)
 RANDOM_STATE = 42
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=RANDOM_STATE)
 
-# RandomUnderSampler - undersampling (only train data)
-undersample = RandomUnderSampler(random_state=RANDOM_STATE)
-X_train, y_train = undersample.fit_resample(X_train, y_train)
+#SMOTE - oversampling (only train data)
+oversample = SMOTE(random_state=RANDOM_STATE)
+X_train, y_train = oversample.fit_resample(X_train, y_train)
 
 #K-folds
 fold = 10
